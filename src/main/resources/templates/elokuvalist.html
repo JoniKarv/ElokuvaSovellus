@@ -20,7 +20,7 @@
 			<td th:text= "${ elokuva.kuvaus }"></td>
 			<td th:text= "${ elokuva.kategoria.nimi }"></td>
 			<td th:text= "${ elokuva.ikaraja }"></td>
-			<td><a th:href="@{/elokuvat/{id}/elokuvat(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button">Muokkaa</button></a></td>
+			<td><a th:href="@{/edit/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button">Muokkaa</button></a></td>
 			<td><a th:href="@{/deleteelokuva/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button">Poista</button></a></td>
 		</tr>
 	</table>

@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LuoElokuva</title>
+    <title>Elokuvan muokkaus</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
 	<h1>Kuvaile elokuvaa</h1>
-	<form th:object="${elokuva}" th:action="@{saveelokuva}" action="#" method="post">
+	<div>
+	<form th:object="${elokuva}" th:action="@{../saveelokuva}" action="#" method="post">
+		<input type="hidden" th:field="*{elokuva_id}" class="form-control"/>
 		<table>
 			<tr>
 				<td>Elokuvan nimi:</td>
@@ -39,8 +41,8 @@
 		</table>
 		<input type="submit" value="Valmis"></input>
 		<a th:href="@{/}" style="text-decoration: none; color: black"><button type="button"></input>Peruuta</a>
-
 	</form>
+	</div>
 </body>
 
 </html>

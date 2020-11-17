@@ -63,8 +63,16 @@ public class ElokuvaController{
 	}
 	
 	@RequestMapping(value = "/deleteelokuva/{id}", method = RequestMethod.GET)
-	public String deleteOhjaaja(@PathVariable("id") Long id, Model model) {
+	public String deleteElokuva(@PathVariable("id") Long id, Model model) {
 		elokuvaRepository.deleteById(id);
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/edit/{id}")
+	public String editElokuva(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("elokuva", elokuvaRepository.findById(id));
+		model.addAttribute("Kategoriat", kategoriaRepository.findAll());
+		model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
+		return "editelokuva";
 	}
 }
