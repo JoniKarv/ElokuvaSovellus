@@ -11,14 +11,19 @@
 	<table>
 		<tr th:each= "kategoria:${kategoriat}">
 			<td th:text= "${ kategoria.nimi }"></td>
-  			<td><a th:href="@{/kategoriat/{id}/elokuvat(id=${kategoria.kategoria_id})}">Näytä</a></td>
-			<td><a th:href="@{/deletekategoria/{id}(id=${kategoria.kategoria_id})}">Delete</a></td>
+			<td><a th:href="@{/kategoriat/{id}/elokuvat(id=${kategoria.kategoria_id})}" style="text-decoration: none; color: black"><button type="button">Näytä</button></a></td>
+			<td><a th:href="@{/deletekategoria/{id}(id=${kategoria.kategoria_id})}" style="text-decoration: none; color: black"><button type="button">Poista</button></a></td>
 		</tr>
 	</table>
-
-	<a th:href="@{/addkategoria}">Lisää uusi kategoria</a><br />
-	<a th:href="@{/}">Elokuvat</a><br />
-	<a th:href="@{/ohjaajalist}">Ohjaajat</a><br />
+	<br />
+	<a th:href="@{/addkategoria}" style="text-decoration: none; color: black"><button type="button">Lisää uusi kategoria</button></a><br /><br />
 	
+	<table>
+		<tr>
+			<td><a th:href="@{/}" style="text-decoration: none; color: black"><button type="button">Elokuvat</button></a></td>
+			<td><a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button">Ohjaajat</button></a></td>
+			<td><a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue">Kategoriat</button></a></td>
+		</tr>
+	</table>
 </body>
 </html>
