@@ -1,22 +1,24 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LuoOhjaaja</title>
+    <title>Ohjaajalista</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-	<form th:object="${ohjaaja}" th:action="@{saveohjaaja}" action="#" method="post">
-		<table>
-			<tr>
-				<td>Ohjaajan nimi:</td>
-				<td><input type="text" id="nimi" th:field="*{nimi}" /></td>
-				<td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</td>
-			</tr>
-		</table>
-		<input type="submit" value="Valmis"></input>
-		<a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button"></input>Peruuta</a>
-	</form>
-</body>
 
+	<h1>Ohjaajat</h1>
+	<table>
+		<tr th:each= "ohjaaja:${ohjaajat}">
+			<td th:text= "${ ohjaaja.nimi }"></td>
+  			<td><a th:href="@{/ohjaajat/{id}/elokuvat(id=${ohjaaja.ohjaaja_id})}">Näytä</a></td>
+			<td><a th:href="@{/deleteohjaaja/{id}(id=${ohjaaja.ohjaaja_id})}">Delete</a></td>
+		</tr>
+	</table>
+
+	<a th:href="@{/add}">Lisää uusi ohjaaja</a><br />
+	<a th:href="@{/}">Elokuvat</a><br />
+	<a th:href="@{/kategorialist}">Kategoriat</a><br />
+	
+</body>
 </html>
