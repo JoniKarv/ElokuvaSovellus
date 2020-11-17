@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ElokuvaLista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<h1>Elokuvat</h1>
+	<table>
+	<td><b>Nimi: </b></td>
+	<td><b>Ohjaaja: </b></td>
+	<td><b>Kuvaus: </b></td>
+	<td><b>Kategoria: </b></td>
+	<td><b>Ikäraja: </b></td>
+		<tr th:each= "elokuva:${elokuvat}">
+			<td th:text= "${ elokuva.nimi }"></td>
+			<td th:text= "${ elokuva.ohjaaja.nimi }"></td>
+			<td th:text= "${ elokuva.kuvaus }"></td>
+			<td th:text= "${ elokuva.kategoria.nimi }"></td>
+			<td th:text= "${ elokuva.ikaraja }"></td>
+  			<td><a th:href="@{/elokuvat/{id}/elokuvat(id=${elokuva.elokuva_id})}">Näytä</a></td>
+			<td><a th:href="@{/deleteelokuva/{id}(id=${elokuva.elokuva_id})}">Delete</a></td>
+		</tr>
+	</table>
+
+	<a th:href="@{/addelokuva}">Lisää uusi elokuva</a><br />
+	<a th:href="@{/ohjaajalist}">Ohjaajat</a><br />
+	<a th:href="@{/kategorialist}">Kategoriat</a><br />
+	<a th:href="@{/resthome}">REST API</a>
+	
+</body>
+</html>

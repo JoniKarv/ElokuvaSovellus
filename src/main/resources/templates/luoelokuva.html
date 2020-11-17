@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LuoElokuva</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<form th:object="${elokuva}" th:action="@{saveelokuva}" action="#" method="post">
+		<table>
+			<tr>
+				<td>Elokuvan nimi:</td>
+				<td><input type="text" id="nimi" th:field="*{nimi}" /></td>
+				<td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</td>
+			</tr>
+			<tr>
+				<td>Elokuvan ikäraja:</td>
+				<td><input type="text" id="ikaraja" th:field="*{ikaraja}" /></td>
+				<td th:if="${#fields.hasErrors('ikaraja')}" th:errors="*{ikaraja}">Error</td>
+			</tr>
+			<tr>
+				<td>Elokuvan kuvaus:</td>
+				<td><input type="text" id="kuvaus" th:field="*{kuvaus}" /></td>
+				<td th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">Error</td>
+			</tr>
+			<tr>
+				<td><label for="Kategoriat">Kategoria</label></td>
+				<td><select id="Kategoriat" th:field="*{kategoria}" class="form-control">
+					<option th:each="kategoria: ${Kategoriat}" th:value="${kategoria.kategoria_id}" th:text="${kategoria.nimi}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><label for="Kategoriat">Ohjaaja</label></td>
+				<td><select id="Ohjaajat" th:field="*{ohjaaja}" class="form-control">
+					<option th:each="ohjaaja: ${Ohjaajat}" th:value="${ohjaaja.ohjaaja_id}" th:text="${ohjaaja.nimi}"></option>
+				</select></td>
+			</tr>
+		</table>
+		<input type="submit" value="Valmis"></input>
+		<a th:href="@{/}" style="text-decoration: none; color: black"><button type="button"></input>Peruuta</a>
+
+	</form>
+</body>
+
+</html>

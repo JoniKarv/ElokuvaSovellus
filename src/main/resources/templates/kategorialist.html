@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kategorialista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<h1>Luo uusi kategoria</h1>
+	<table>
+		<tr th:each= "kategoria:${kategoriat}">
+			<td th:text= "${ kategoria.nimi }"></td>
+  			<td><a th:href="@{/kategoriat/{id}/elokuvat(id=${kategoria.kategoria_id})}">Näytä</a></td>
+			<td><a th:href="@{/deletekategoria/{id}(id=${kategoria.kategoria_id})}">Delete</a></td>
+		</tr>
+	</table>
+
+	<a th:href="@{/addkategoria}">Lisää uusi kategoria</a><br />
+	<a th:href="@{/}">Elokuvat</a><br />
+	<a th:href="@{/ohjaajalist}">Ohjaajat</a><br />
+	
+</body>
+</html>

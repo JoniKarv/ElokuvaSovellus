@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LuoOhjaaja</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<form th:object="${ohjaaja}" th:action="@{saveohjaaja}" action="#" method="post">
+		<table>
+			<tr>
+				<td>Ohjaajan nimi:</td>
+				<td><input type="text" id="nimi" th:field="*{nimi}" /></td>
+				<td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</td>
+			</tr>
+		</table>
+		<input type="submit" value="Valmis"></input>
+		<a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button"></input>Peruuta</a>
+	</form>
+</body>
+
+</html>
