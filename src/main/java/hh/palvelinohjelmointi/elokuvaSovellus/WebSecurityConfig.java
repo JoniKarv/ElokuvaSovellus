@@ -17,7 +17,7 @@ import hh.palvelinohjelmointi.elokuvaSovellus.webcontroller.UserDetailServiceImp
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/?lang=en", "/?lang=fr", "/kategorialist", "/ohjaajalist", "/kategoriat/{id}/elokuvat", "/ohjaajat/{id}/elokuvat").permitAll().anyRequest().authenticated().and().formLogin()
+		http.authorizeRequests().antMatchers("/", "/?lang=en", "/?lang=fi", "/kategorialist", "/ohjaajalist", "/kategoriat/{id}/elokuvat", "/ohjaajat/{id}/elokuvat").permitAll().anyRequest().authenticated().and().formLogin()
 		.loginPage("/login").permitAll().and().logout().permitAll();
 	}
 

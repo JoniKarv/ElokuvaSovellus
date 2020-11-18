@@ -50,11 +50,21 @@ public class ElokuvaController{
 	
 	@RequestMapping(value = "/addelokuva")
 	@PreAuthorize("hasRole('ADMIN')")
-	public String addohjaaja(Model model) {
-		model.addAttribute("elokuva", new Elokuva());
-		model.addAttribute("Kategoriat", kategoriaRepository.findAll());
-		model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
-		return "luoelokuva";
+	public String addohjaaja(Model model, Long elokuva_id) {
+		if (elokuva_id == null) {
+			model.addAttribute("elokuva", new Elokuva());
+			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
+			model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
+			return "luoelokuva";
+		}else {
+			Elokuva elokuva = new Elokuva();
+			elokuva.setElokuva_id(elokuva_id);
+			model.addAttribute("elokuva", elokuva);
+			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
+			model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
+			return "luoelokuva";
+		}
+		
 	}
 	
 	@PostMapping(value = "/saveelokuva")

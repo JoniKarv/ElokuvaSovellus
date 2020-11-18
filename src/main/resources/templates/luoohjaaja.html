@@ -6,17 +6,18 @@
 </head>
 
 <body>
-	<h1>Luo uusi ohjaaja</h1>
+	<h1 th:text="#{UusiO}"></h1>
 	<form th:object="${ohjaaja}" th:action="@{saveohjaaja}" action="#" method="post">
 		<table>
 			<tr>
-				<td>Ohjaajan nimi:</td>
+				<td th:text="#{Onimi}"></td>
 				<td><input type="text" id="nimi" th:field="*{nimi}" /></td>
 				<td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</td>
 			</tr>
 		</table>
-		<input type="submit" value="Valmis"></input>
-		<a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button"></input>Peruuta</a>
+		
+		<button type="submit" th:text="#{Valmis}"></button>
+		<a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button" th:text="#{Peruuta}"></button></a>
 	</form>
 </body>
 

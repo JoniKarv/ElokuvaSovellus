@@ -7,14 +7,26 @@
 
 <body>
 	<h1 th:text="#{Kirjaudu}"></h1>
-	<div th:if="${param.error}">
-		Invalid username and password.
-	</div>
-	<form th:action="@{/login}" method="post">
-		<div><label><span th:text="#{Kayttaja}"></span><input type="text" name="username"/> </label></div>
-		<div><label><span th:text="#{Salasana}"></span><input type="password" name="password"/> </label></div>
-		<div><button type="submit" th:text="#{Kirjaudu}"></button></div>
-	</form>
+	
+		<form th:action="@{/login}" method="post">
+		<table>
+			<tr>
+				<td><div><label><span th:text="#{Kayttaja}"></span></td>
+				<td><input type="text" name="username"/> </label></div></td>
+			</tr>
+			<tr>
+				<td><div><label><span th:text="#{Salasana}"></span></td>
+				<td><input type="password" name="password"/> </label></div></td>
+			</tr>
+			<tr>
+				<td><div><button type="submit" th:text="#{Kirjaudu}"></button></div></td>
+			</tr>
+		</table>
+		</form>
+		<div th:if="${param.error}">
+			<span th:text="#{Error}"></span>
+		</div>
+	
 	<br />
 	<a th:href="@{/}" style="text-decoration: none; color: black"><button type="button" th:text="#{Kirjautumatta}"></button></a>
 	
