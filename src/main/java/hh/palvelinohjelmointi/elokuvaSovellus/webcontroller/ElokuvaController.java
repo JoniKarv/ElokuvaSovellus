@@ -38,7 +38,7 @@ public class ElokuvaController{
 	
 	@RequestMapping(value="/login")
 	public String login() {
-		return "login";
+		return "Login";
 	}   
 	
 	@RequestMapping("/")
