@@ -1,6 +1,6 @@
 package hh.palvelinohjelmointi.elokuvaSovellus;
 
-
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import hh.palvelinohjelmointi.elokuvaSovellus.domain.Ohjaaja;
 import hh.palvelinohjelmointi.elokuvaSovellus.domain.OhjaajaRepository;
@@ -20,7 +25,7 @@ import hh.palvelinohjelmointi.elokuvaSovellus.domain.Kategoria;
 import hh.palvelinohjelmointi.elokuvaSovellus.domain.KategoriaRepository;
 
 @SpringBootApplication
-public class ElokuvaSovellusApplication extends SpringBootServletInitializer {
+public class ElokuvaSovellusApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
 	private static final Logger log = LoggerFactory.getLogger(ElokuvaSovellusApplication.class);
 
 	
@@ -31,6 +36,25 @@ public class ElokuvaSovellusApplication extends SpringBootServletInitializer {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ElokuvaSovellusApplication.class, args);
+	}
+	
+	@Bean
+	public LocaleResolver localeResolver() {
+	    SessionLocaleResolver slr = new SessionLocaleResolver();
+	    slr.setDefaultLocale(Locale.US);
+	    return slr;
+	}
+	
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+	    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+	    lci.setParamName("lang");
+	    return lci;
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+	    registry.addInterceptor(localeChangeInterceptor());
 	}
 	
 	@Bean

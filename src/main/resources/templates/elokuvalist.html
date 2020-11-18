@@ -7,21 +7,21 @@
 
 <body>
 
-	<h1>Elokuvat</h1>
+	<h1 th:text="#{Elokuvat}"></h1>
 	<table>
-	<td><b>Nimi: </b></td>
-	<td><b>Ohjaaja: </b></td>
-	<td><b>Kuvaus: </b></td>
-	<td><b>Kategoria: </b></td>
-	<td><b>Ikäraja: </b></td>
+	<td><b th:text="#{Nimi}"> </b></td>
+	<td><b th:text="#{Ohjaaja}"></b></td>
+	<td><b th:text="#{Kuvaus}"></b></td>
+	<td><b th:text="#{Kategoria}"></b></td>
+	<td><b th:text="#{Ikaraja}"></b></td>
 		<tr th:each= "elokuva:${elokuvat}">
 			<td th:text= "${ elokuva.nimi }"></td>
 			<td th:text= "${ elokuva.ohjaaja.nimi }"></td>
 			<td th:text= "${ elokuva.kuvaus }"></td>
 			<td th:text= "${ elokuva.kategoria.nimi }"></td>
 			<td th:text= "${ elokuva.ikaraja }"></td>
-			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/edit/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button">Muokkaa</button></a></td>
-			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteelokuva/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button">Poista</button></a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/edit/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button" th:text="#{Muokkaa}"></button></a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteelokuva/{id}(id=${elokuva.elokuva_id})}" style="text-decoration: none; color: black"><button type="button" th:text="#{Poista}"></button></a></td>
 		</tr>
 	</table>
 	
@@ -29,21 +29,40 @@
 	
 	<table>
 		<tr>
-			<td><a th:href="@{/}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue">Elokuvat</button></a></td>
-			<td><a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button">Ohjaajat</button></a></td>
-			<td><a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button">Kategoriat</button></a></td>
+			<td><a th:href="@{/}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue" th:text="#{Elokuvat}"></button></a></td>
+			<td><a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button" th:text="#{Ohjaajat}"></button></a></td>
+			<td><a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button" th:text="#{Kategoriat}"></button></a></td>
 		</tr>
 	</table>
 	<br />
 	<table>
 		<tr>
-			<td sec:authorize="!hasRole('ADMIN')"><a th:href="@{/login}" style="text-decoration: none; color: black"><button type="button">Kirjaudu sisään</button></a></td>
+			<td sec:authorize="!hasRole('ADMIN')"><a th:href="@{/login}" style="text-decoration: none; color: black"><button type="button" th:text="#{KirjauduS}"></button></a></td>
 			<td sec:authorize="hasRole('ADMIN')">
 				<form th:action="@{/logout}" method = "post">
-			    	<input type="submit" value="Kirjaudu ulos" class="btn"/>
+			    	<button type="submit" class="btn" th:text="#{KirjauduU}"></button>
 			    </form>
 		    </td>
 		</tr>
 	</table>
+	
+	<span th:text="#{lang.change}"></span>:
+	<select id="locales">
+	    <option value=""></option>
+	    <option value="fi" th:text="#{lang.fi}"></option>
+	    <option value="en" th:text="#{lang.eng}"></option>
+	</select>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $("#locales").change(function () {
+	        var selectedOption = $('#locales').val();
+	        if (selectedOption != ''){
+	            window.location.replace('?lang=' + selectedOption);
+	        }
+	    });
+	});
+	</script>
 </body>
 </html>
