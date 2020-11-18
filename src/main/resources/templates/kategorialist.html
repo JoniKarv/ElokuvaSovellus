@@ -16,7 +16,7 @@
 		</tr>
 	</table>
 	<br />
-	<a sec:authorize="hasRole('ADMIN')" th:href="@{/addkategoria}" style="text-decoration: none; color: black"><button type="button">Lisää uusi kategoria</button></a><br /><br />
+	<a sec:authorize="hasRole('ADMIN')" th:href="@{/addkategoria}" style="text-decoration: none; color: black"><button type="button" th:text="#{UusiKat}"></button></a><br /><br />
 	
 	<table>
 		<tr>

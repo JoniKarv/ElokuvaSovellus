@@ -6,16 +6,17 @@
 </head>
 
 <body>
+	<h1 th:text="#{Kirjaudu}"></h1>
 	<div th:if="${param.error}">
 		Invalid username and password.
 	</div>
 	<form th:action="@{/login}" method="post">
-		<div><label> User Name : <input type="text" name="username"/> </label></div>
-		<div><label> Password: <input type="password" name="password"/> </label></div>
-		<div><input type="submit" value="Sign In"/></div>
+		<div><label><span th:text="#{Kayttaja}"></span><input type="text" name="username"/> </label></div>
+		<div><label><span th:text="#{Salasana}"></span><input type="password" name="password"/> </label></div>
+		<div><button type="submit" th:text="#{Kirjaudu}"></button></div>
 	</form>
 	<br />
-	<a th:href="@{/}" style="text-decoration: none; color: black"><button type="button">Jatka kirjautumatta</button></a>
+	<a th:href="@{/}" style="text-decoration: none; color: black"><button type="button" th:text="#{Kirjautumatta}"></button></a>
 	
 </body>
 </html>

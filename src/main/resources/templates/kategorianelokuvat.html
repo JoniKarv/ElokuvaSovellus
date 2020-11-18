@@ -6,13 +6,13 @@
 </head>
 
 <body>
-	<h1><span th:text= "${ kategoria.nimi }"></span> elokuvat</h1>
+	<h1><span th:text= "${ kategoria.nimi }"></span> </h1>
 	<table>
-	<td><b>Nimi: </b></td>
-	<td><b>Ohjaaja: </b></td>
-	<td><b>Kuvaus: </b></td>
-	<td><b>Kategoria: </b></td>
-	<td><b>Ikäraja: </b></td>
+	<td><b th:text="#{Nimi}"> </b></td>
+	<td><b th:text="#{Ohjaaja}"></b></td>
+	<td><b th:text="#{Kuvaus}"></b></td>
+	<td><b th:text="#{Kategoria}"></b></td>
+	<td><b th:text="#{Ikaraja}"></b></td>
 		<tr th:each= "elokuva:${elokuvat}">
 			<td th:text= "${ elokuva.nimi }"></td>
 			<td th:text= "${ elokuva.ohjaaja.nimi }"></td>
@@ -22,13 +22,13 @@
 		</tr>
 	</table>
 
-	<a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button">Takaisin</button></a><br /><br />
+	<a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button" th:text="#{Takaisin}"></button></a><br /><br />
 
 	<table>
 		<tr>
-			<td><a th:href="@{/}" style="text-decoration: none; color: black"><button type="button">Elokuvat</button></a></td>
-			<td><a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button">Ohjaajat</button></a></td>
-			<td><a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue">Kategoriat</button></a></td>
+			<td><a th:href="@{/}" style="text-decoration: none; color: black"><button type="button" th:text="#{Elokuvat}"></button></a></td>
+			<td><a th:href="@{/ohjaajalist}" style="text-decoration: none; color: black"><button type="button" th:text="#{Ohjaajat}"></button></a></td>
+			<td><a th:href="@{/kategorialist}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue" th:text="#{Kategoriat}"></button></a></td>
 		</tr>
 	</table>
 	
