@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class KategoriaController {
 
 	// Lisää kategorian
 	@RequestMapping(value = "/addkategoria")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String addkategoria(Model model) {
 		model.addAttribute("kategoria", new Kategoria());
 		return "luokategoria";
@@ -49,6 +51,7 @@ public class KategoriaController {
 
 	// tallentaa kategorian
 	@RequestMapping(value = "/savekategoria", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(@Valid Kategoria kategoria, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "luokategoria";
@@ -59,6 +62,7 @@ public class KategoriaController {
 	}
 
 	@RequestMapping(value = "/deletekategoria/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteKategoria(@PathVariable("id") Long kategoria_id, Model model) {
 		kategoriaRepository.deleteById(kategoria_id);
 		return "redirect:/kategorialist";

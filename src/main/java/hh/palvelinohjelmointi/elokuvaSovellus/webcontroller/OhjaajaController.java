@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +45,7 @@ public class OhjaajaController {
 
 	// Lisää ohjaajan
 	@RequestMapping(value = "/add")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String addohjaaja(Model model) {
 		model.addAttribute("ohjaaja", new Ohjaaja());
 		return "luoohjaaja";
@@ -51,6 +53,7 @@ public class OhjaajaController {
 
 	// tallentaa ohjaajan
 	@RequestMapping(value = "/saveohjaaja", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(@Valid Ohjaaja ohjaaja, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "luoohjaaja";
@@ -77,6 +80,7 @@ public class OhjaajaController {
 	}
 
 	@RequestMapping(value = "/deleteohjaaja/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteOhjaaja(@PathVariable("id") Long id, Model model) {
 		ohjaajaRepository.deleteById(id);
 		return "redirect:/ohjaajalist";

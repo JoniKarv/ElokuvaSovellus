@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 // import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +49,7 @@ public class ElokuvaController{
 	}
 	
 	@RequestMapping(value = "/addelokuva")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String addohjaaja(Model model) {
 		model.addAttribute("elokuva", new Elokuva());
 		model.addAttribute("Kategoriat", kategoriaRepository.findAll());
@@ -56,6 +58,7 @@ public class ElokuvaController{
 	}
 	
 	@PostMapping(value = "/saveelokuva")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(@Valid Elokuva elokuva, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
@@ -68,12 +71,14 @@ public class ElokuvaController{
 	}
 	
 	@RequestMapping(value = "/deleteelokuva/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteElokuva(@PathVariable("id") Long id, Model model) {
 		elokuvaRepository.deleteById(id);
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/edit/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String editElokuva(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("elokuva", elokuvaRepository.findById(id));
 		model.addAttribute("Kategoriat", kategoriaRepository.findAll());

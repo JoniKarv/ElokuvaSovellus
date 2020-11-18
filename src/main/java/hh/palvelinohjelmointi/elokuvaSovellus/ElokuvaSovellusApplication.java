@@ -66,10 +66,8 @@ public class ElokuvaSovellusApplication extends SpringBootServletInitializer {
 			Elokuva viides = new Elokuva("Elokuva5", "K18", "asd", ekaohjaaja, kategoria1);
 			Elokuva neljas = new Elokuva("Elokuva6", "K16", "asd", tokaohjaaja, kategoria5);
 			
-			User user1 = new User("user", "$2b$10$ELCW1a6XgQdEyE0VokWOP.I09koY3sz9SVDUnPrJNmNaWmyLeLKUC", "ROLE_USER");
-			User user2 = new User("admin", "$2a$10$QbafKD4U.0RzjCY7TB7ulOtyvP0LbWmt598UUcfeWxQTV.PYiecJu", "ROLE_ADMIN");
-			userRepository.save(user1);
-			userRepository.save(user2);
+			User user = new User("admin", "$2a$10$QbafKD4U.0RzjCY7TB7ulOtyvP0LbWmt598UUcfeWxQTV.PYiecJu", "ROLE_ADMIN");
+			userRepository.save(user);
 			
 			log.info("tallennetaan repoon");
 			elokuvarepo.save(eka);
