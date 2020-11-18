@@ -28,7 +28,7 @@ public class Elokuva {
 	String ikaraja;
 	
 	@NotNull
-	@Size(min=1, max=300)
+	@Size(min=1, max=90)
 	String kuvaus;
 	
 	@ManyToOne

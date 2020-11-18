@@ -36,8 +36,13 @@ public class ElokuvaController{
 	@Autowired
 	private KategoriaRepository kategoriaRepository;
 	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}   
+	
 	@RequestMapping("/")
-	public String ohjaajaList(Model model) {
+	public String elokuvaList(Model model) {
 		model.addAttribute("elokuvat", elokuvaRepository.findAll());
 		return "elokuvalist";
 	}
