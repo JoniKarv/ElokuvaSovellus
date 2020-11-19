@@ -17,39 +17,39 @@ import hh.palvelinohjelmointi.elokuvaSovellus.domain.Ohjaaja;
 @Entity
 public class Elokuva {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long elokuva_id;
-	
+
 	@NotNull
-	@Size(min=1, max=50)
+	@Size(min = 1, max = 50)
 	String nimi;
-	
+
 	@NotNull
-	@Size(min=1, max=5)
+	@Size(min = 1, max = 5)
 	String ikaraja;
-	
+
 	@NotNull
-	@Size(min=1, max=100)
+	@Size(min = 1, max = 100)
 	String kuvaus;
-	
+
 	@ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "ohjaaja_id")
-    private Ohjaaja ohjaaja;
-	
+	@JsonIgnore
+	@JoinColumn(name = "ohjaaja_id")
+	private Ohjaaja ohjaaja;
+
 	@ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "kategoria_id")
-    private Kategoria kategoria;
+	@JsonIgnore
+	@JoinColumn(name = "kategoria_id")
+	private Kategoria kategoria;
 
 	public Elokuva(String nimi, String ikaraja, String kuvaus) {
 		super();
 		this.nimi = nimi;
 		this.ikaraja = ikaraja;
 		this.kuvaus = kuvaus;
-	
+
 	}
-	
+
 	public Elokuva(String nimi, String ikaraja, String kuvaus, Ohjaaja ohjaaja) {
 		super();
 		this.nimi = nimi;
@@ -57,7 +57,7 @@ public class Elokuva {
 		this.kuvaus = kuvaus;
 		this.ohjaaja = ohjaaja;
 	}
-	
+
 	public Elokuva(String nimi, String ikaraja, String kuvaus, Ohjaaja ohjaaja, Kategoria kategoria) {
 		super();
 		this.nimi = nimi;
@@ -72,9 +72,9 @@ public class Elokuva {
 		this.kuvaus = kuvaus;
 		this.ohjaaja = ohjaaja;
 	}
-	
+
 	public Elokuva() {
-		
+
 	}
 
 	public Kategoria getKategoria() {
@@ -129,5 +129,5 @@ public class Elokuva {
 	public String toString() {
 		return "elokuva [nimi=" + nimi + ", ikaraja=" + ikaraja + ", kuvaus=" + kuvaus + ", ohjaaja=" + ohjaaja + "]";
 	}
-	
+
 }

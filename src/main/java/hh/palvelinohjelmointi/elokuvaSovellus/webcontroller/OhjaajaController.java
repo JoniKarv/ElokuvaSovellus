@@ -64,7 +64,7 @@ public class OhjaajaController {
 	}
 
 	@RequestMapping(value = "/ohjaajat/{id}/elokuvat")
-	public String kategorianElokuvat(@PathVariable("id") Long id, Model model) {
+	public String ohjaajanElokuvat(@PathVariable("id") Long id, Model model) {
 		Iterable<Elokuva> all = elokuvaRepository.findAll();
 		List<Elokuva> ohjaajanElokuvat = new ArrayList<>();
 		for (Elokuva elokuva : all) {
