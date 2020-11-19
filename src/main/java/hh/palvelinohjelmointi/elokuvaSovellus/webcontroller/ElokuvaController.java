@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,32 +49,31 @@ public class ElokuvaController{
 		return "elokuvalist";
 	}
 	
-	@RequestMapping(value = "/addelokuva")
+	@GetMapping(value = "/addelokuva")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String addohjaaja(Model model, Long elokuva_id) {
-		if (elokuva_id == null) {
 			model.addAttribute("elokuva", new Elokuva());
 			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
 			model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
 			return "luoelokuva";
-		}else {
-			Elokuva elokuva = new Elokuva();
-			elokuva.setElokuva_id(elokuva_id);
-			model.addAttribute("elokuva", elokuva);
-			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
-			model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
-			return "luoelokuva";
-		}
-		
 	}
 	
+	//Jos vastaanotettu elokuva ei ole validi, ohjaa uuden elokuvan luontiin jos
+	//elokuvalla ei ole id:tä ja editointiin jos elokuvalla on id
 	@PostMapping(value = "/saveelokuva")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String save(@Valid Elokuva elokuva, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("Kategoriat", kategoriaRepository.findAll());
-			model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
-			return "luoelokuva";
+			if (elokuva.getElokuva_id() == null) {
+				model.addAttribute("Kategoriat", kategoriaRepository.findAll());
+				model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
+				return "luoelokuva";
+			}else {
+				model.addAttribute("elokuva", elokuva);
+				model.addAttribute("Kategoriat", kategoriaRepository.findAll());
+				model.addAttribute("Ohjaajat", ohjaajaRepository.findAll());
+				return "editelokuva";
+			}
 		}else {
 			elokuvaRepository.save(elokuva);
 			return "redirect:/";
@@ -87,7 +87,7 @@ public class ElokuvaController{
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/edit/{id}")
+	@GetMapping(value = "/edit/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String editElokuva(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("elokuva", elokuvaRepository.findById(id));
