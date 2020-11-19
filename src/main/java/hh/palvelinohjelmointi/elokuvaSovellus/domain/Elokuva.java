@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import hh.palvelinohjelmointi.elokuvaSovellus.domain.Ohjaaja;
@@ -28,16 +29,16 @@ public class Elokuva {
 	String ikaraja;
 	
 	@NotNull
-	@Size(min=1, max=90)
+	@Size(min=1, max=100)
 	String kuvaus;
 	
 	@ManyToOne
-    @JsonIgnoreProperties ("elokuva") 
+    @JsonIgnore
     @JoinColumn(name = "ohjaaja_id")
     private Ohjaaja ohjaaja;
 	
 	@ManyToOne
-    @JsonIgnoreProperties ("elokuva") 
+    @JsonIgnore
     @JoinColumn(name = "kategoria_id")
     private Kategoria kategoria;
 

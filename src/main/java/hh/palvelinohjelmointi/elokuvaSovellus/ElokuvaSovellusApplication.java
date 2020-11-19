@@ -62,12 +62,23 @@ public class ElokuvaSovellusApplication extends SpringBootServletInitializer imp
 		return(args)-> {
 			
 			log.info("luodaan ohjaaja");
-			Ohjaaja ekaohjaaja = new Ohjaaja("Matti Mies");
-			ohjaajarepo.save(ekaohjaaja);
+			Ohjaaja ohjaaja1 = new Ohjaaja("Veiko Ounpuu");
+			Ohjaaja ohjaaja2 = new Ohjaaja("Mark Waters");
+			Ohjaaja ohjaaja3 = new Ohjaaja("Jenni Toivoniemi");
+			Ohjaaja ohjaaja4 = new Ohjaaja("Zaida Bergroth");
+			Ohjaaja ohjaaja5 = new Ohjaaja("Christopher Landon");
+			Ohjaaja ohjaaja6 = new Ohjaaja("Will Wernick");
+			Ohjaaja ohjaaja7 = new Ohjaaja("Ville Jankeri");
+			Ohjaaja ohjaaja8 = new Ohjaaja("Virpi Suutari");
 			
-			log.info("luodaan toinen ohjaaja");
-			Ohjaaja tokaohjaaja = new Ohjaaja("Mies Matti");
-			ohjaajarepo.save(tokaohjaaja);
+			ohjaajarepo.save(ohjaaja1);
+			ohjaajarepo.save(ohjaaja2);
+			ohjaajarepo.save(ohjaaja3);
+			ohjaajarepo.save(ohjaaja4);
+			ohjaajarepo.save(ohjaaja5);
+			ohjaajarepo.save(ohjaaja6);
+			ohjaajarepo.save(ohjaaja7);
+			ohjaajarepo.save(ohjaaja8);
 			
 			log.info("luodaan pari kategoriaa");
 			Kategoria kategoria1 = new Kategoria("Komedia");
@@ -75,31 +86,40 @@ public class ElokuvaSovellusApplication extends SpringBootServletInitializer imp
 			Kategoria kategoria3 = new Kategoria("Trilleri");
 			Kategoria kategoria4 = new Kategoria("Draama");
 			Kategoria kategoria5 = new Kategoria("Sota");
+			Kategoria kategoria6 = new Kategoria("Jännitys");
+			Kategoria kategoria7 = new Kategoria("Dokumentti");
 			
 			kategoriarepo.save(kategoria1);
 			kategoriarepo.save(kategoria2);
 			kategoriarepo.save(kategoria3);
 			kategoriarepo.save(kategoria4);
 			kategoriarepo.save(kategoria5);
+			kategoriarepo.save(kategoria6);
+			kategoriarepo.save(kategoria7);
 			
 			log.info("luodaan pari elokuvaa");
-			Elokuva eka = new Elokuva("Elokuva1", "K13", "Matti tykkää Teposta, mutta tykkääkö Teppo Matista", ekaohjaaja, kategoria1);
-			Elokuva toka = new Elokuva("Elokuva2", "K18", "asd", ekaohjaaja, kategoria2);
-			Elokuva kolmas = new Elokuva("Elokuva3", "K6", "asd", ekaohjaaja, kategoria3);
-			Elokuva nelkku = new Elokuva("Elokuva4", "K8", "asd", ekaohjaaja, kategoria4);
-			Elokuva viides = new Elokuva("Elokuva5", "K18", "asd", ekaohjaaja, kategoria1);
-			Elokuva neljas = new Elokuva("Elokuva6", "K16", "asd", tokaohjaaja, kategoria5);
+			Elokuva leffa1 = new Elokuva("Viimeiset", "K16", "Pohjoinen western, jonka tapahtumat sijoittuvat Lapin kesyttömille tunturialueille.", ohjaaja1, kategoria4);
+			Elokuva leffa2 = new Elokuva("Honest Thief", "K16", "Tom Carter on rikollinen, joka on onnistunut välttymään kiinnijäämiseltä jo vuosien ajan.", ohjaaja2, kategoria6);
+			Elokuva leffa3 = new Elokuva("Seurapeli", "K12", "Seurapeli on draamakomedia pitkitetystä nuoruudesta ja rooleista, joihin ajaudumme.", ohjaaja3, kategoria4);
+			Elokuva leffa4 = new Elokuva("Tove", "K12", "Sodan päättyminen antaa taidemaalari Tove Janssonille taiteellista ja sosiaalista vapautta.", ohjaaja4, kategoria4);
+			Elokuva leffa5 = new Elokuva("Freaky", "K16", "Kauhukomediassa Freaky teinityttö vaihtaa kehoja säälimättömän sarjamurhaajan kanssa!", ohjaaja5, kategoria2);
+			Elokuva leffa6 = new Elokuva("Follow Me", "K16", "Uudessa, hyytävässä kauhuelokuvassa sosiaalisen median tähti matkustaa ystävineen Moskovaan.", ohjaaja6, kategoria2);
+			Elokuva leffa7 = new Elokuva("Metsäjätti", "K7", "Ylennys mielessään Pasi ottaa vastaan tehtävän tehostaa vaneritehtaan toimintaa.", ohjaaja7, kategoria4);
+			Elokuva leffa8 = new Elokuva("Aalto", "K7", "Elokuva arkkitehti Alvar ja Aino Aallosta sekä heidän teoksistaan ympäri maailmaa.", ohjaaja8, kategoria7);
 			
 			User user = new User("admin", "$2a$10$QbafKD4U.0RzjCY7TB7ulOtyvP0LbWmt598UUcfeWxQTV.PYiecJu", "ROLE_ADMIN");
 			userRepository.save(user);
 			
 			log.info("tallennetaan repoon");
-			elokuvarepo.save(eka);
-			elokuvarepo.save(toka);
-			elokuvarepo.save(kolmas);
-			elokuvarepo.save(nelkku);
-			elokuvarepo.save(viides);
-			elokuvarepo.save(neljas);
+			elokuvarepo.save(leffa1);
+			elokuvarepo.save(leffa2);
+			elokuvarepo.save(leffa3);
+			elokuvarepo.save(leffa4);
+			elokuvarepo.save(leffa5);
+			elokuvarepo.save(leffa6);
+			elokuvarepo.save(leffa7);
+			elokuvarepo.save(leffa8);
+
 		};
 		
 	}

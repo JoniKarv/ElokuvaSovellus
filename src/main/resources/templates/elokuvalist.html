@@ -64,5 +64,7 @@
 	    });
 	});
 	</script>
+	<br><br>
+	<a sec:authorize="hasRole('ADMIN')" th:href="@{/resthome}" style="text-decoration: none; color: black"><button type="button" style="background-color: lightblue">REST home</button></a>
 </body>
 </html>

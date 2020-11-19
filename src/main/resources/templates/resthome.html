@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REST home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+
+<body>
+
+<h1>REST Home Page</h1>
+
+<h2>Kaikki Elokuvat</h2>
+<h3>Method: GET Endpoint: <a href="/elokuvat">/elokuvat</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+  {
+    "elokuva_id": 16,
+    "nimi": "Viimeiset",
+    "ikaraja": "K16",
+    "kuvaus": "Pohjoinen western, jonka tapahtumat sijoittuvat Lapin kesyttömille tunturialueille."
+  },
+  {
+    "elokuva_id": 17,
+    "nimi": "Honest Thief",
+    "ikaraja": "K16",
+    "kuvaus": "Tom Carter on rikollinen, joka on onnistunut välttymään kiinnijäämiseltä jo vuosien ajan."
+  },
+]
+	</pre>
+</div>
+
+
+<h2>Kaikki Ohjaajat</h2>
+<h3>Method: GET Endpoint: <a href="/ohjaajat">/ohjaajat</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+  {
+    "ohjaaja_id": 1,
+    "nimi": "Veiko Ounpuu"
+  },
+  {
+    "ohjaaja_id": 2,
+    "nimi": "Mark Waters"
+  },
+  {
+]
+	</pre>
+</div>
+
+<h2>Kaikki Kategoriat</h2>
+<h3>Method: GET Endpoint: <a href="/kategoriat">/kategoriat</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+  {
+    "kategoria_id": 9,
+    "nimi": "Komedia",
+    "elokuvat": [
+      
+    ]
+  },
+  {
+    "kategoria_id": 10,
+    "nimi": "Kauhu",
+    "elokuvat": [
+      {
+        "elokuva_id": 20,
+        "nimi": "Freaky",
+        "ikaraja": "K16",
+        "kuvaus": "Kauhukomediassa Freaky teinityttö vaihtaa kehoja säälimättömän sarjamurhaajan kanssa!"
+      },
+      {
+        "elokuva_id": 21,
+        "nimi": "Follow Me",
+        "ikaraja": "K16",
+        "kuvaus": "Uudessa, hyytävässä kauhuelokuvassa sosiaalisen median tähti matkustaa ystävineen Moskovaan."
+      }
+]
+	</pre>
+</div>
+
+<h2>Tietyn kategorian elokuvat</h2>
+<h3>Method: GET Endpoint: <a href="/kategoria/10/elokuvat">/kategoria/{id}/elokuvat</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+  {
+    "elokuva_id": 20,
+    "nimi": "Freaky",
+    "ikaraja": "K16",
+    "kuvaus": "Kauhukomediassa Freaky teinityttö vaihtaa kehoja säälimättömän sarjamurhaajan kanssa!"
+  },
+  {
+    "elokuva_id": 21,
+    "nimi": "Follow Me",
+    "ikaraja": "K16",
+    "kuvaus": "Uudessa, hyytävässä kauhuelokuvassa sosiaalisen median tähti matkustaa ystävineen Moskovaan."
+  }
+]
+	</pre>
+</div>
+
+<h2>Tietyn ohjaajan elokuvat</h2>
+<h3>Method: GET Endpoint: <a href="/ohjaaja/1/elokuvat">/ohjaaja/{id}/elokuvat</a></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+[
+  {
+    "elokuva_id": 16,
+    "nimi": "Viimeiset",
+    "ikaraja": "K16",
+    "kuvaus": "Pohjoinen western, jonka tapahtumat sijoittuvat Lapin kesyttömille tunturialueille."
+  }
+]
+	</pre>
+</div>
+
+<h2>Uuden ohjaajan lisäys</h2>
+<h3>Method: POST Endpoint: <p>/ohjaaja</p></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+{
+    "nimi": "Christopher Nolan"
+}
+	</pre>
+</div>
+<h2>Uuden kategorian lisäys</h2>
+<h3>Method: POST Endpoint: <p>/kategoria</p></h3>
+<h3>JSON Example:</h3>
+
+<div>
+	<pre class ="tab">
+{
+    "nimi": "Kotimainen"
+}
+	</pre>
+</div>
