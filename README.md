@@ -5,6 +5,7 @@ Sovelluksen tarkoituksena on opetella tietokantojen käyttöä ja se on tehty Ha
 
 Sovellusta voi käyttää verkossa [tästä](https://leffasovellus.herokuapp.com/)
 
+
 Kaikki toiminnallisuudet näkyvät vain sisään kirjautuneena tunnuksilla:
 
 Käyttäjänimi: admin
